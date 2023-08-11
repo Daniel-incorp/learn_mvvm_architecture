@@ -24,13 +24,9 @@ class LoginActivity: AppCompatActivity() {
 
     private fun initLiveData() {
         initSignIn()
-        viewModel.resultState.observeForever { newState ->
-            updateUI(newState)
-        }
-    }
-
-    private fun updateUI(successLogin: String) {
-        welcomeMessage.text
+        viewModel.resultState.observe(this, Observer {
+            welcomeMessage.text = it
+        })
     }
 
 }
